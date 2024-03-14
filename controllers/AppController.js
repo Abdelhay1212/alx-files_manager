@@ -8,9 +8,9 @@ class AppController {
     res.status(200).json({ redis: redisLive, db: dbLive });
   }
 
-  static getStats(req, res) {
-    const numUsers = dbClient.nbUsers();
-    const numFiles = dbClient.nbFiles();
+  static async getStats(req, res) {
+    const numUsers = await dbClient.nbUsers();
+    const numFiles = await dbClient.nbFiles();
     res.status(200).json({ users: numUsers, files: numFiles });
   }
 }
