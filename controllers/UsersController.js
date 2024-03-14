@@ -20,7 +20,7 @@ class UsersController {
     }
 
     const hashed_passwd = await bcrypt.hash(password, 10);
-    const user = {
+    user = {
       email: email,
       password: hashed_passwd
     };
