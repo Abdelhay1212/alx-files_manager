@@ -3,7 +3,9 @@ import redis from 'redis';
 class RedisClient {
   constructor() {
     this.client = redis.createClient();
-    this.client.on('error', (err) => console.error('Redis client error', err));
+    this.client.on('error', (err) => {
+      console.error('Redis client error', err);
+    });
   }
 
   isAlive() {
@@ -13,10 +15,8 @@ class RedisClient {
   async get(key) {
     try {
       const value = await this.client.get(key);
-      if (value === null) return null;
       return value;
     } catch (err) {
-      console.error(err);
       return null;
     }
   }
