@@ -12,8 +12,9 @@ class RedisClient {
 
   async get(key) {
     try {
-      const result = await this.client.get(key);
-      return result;
+      const value = await this.client.get(key);
+      if (value === null) return null;
+      return value;
     } catch (err) {
       console.error(err);
       return null;
@@ -32,7 +33,7 @@ class RedisClient {
     try {
       await this.client.del(key);
     } catch (err) {
-      throw new Error(err);
+      console.error(err);
     }
   }
 }
